@@ -1,0 +1,185 @@
+openapi: 3.0.1
+info:
+  title: A share analysis
+  description: A share analysis about news and financial statement.
+  version: 'v1'
+servers:
+  - url: http://localhost:5023
+paths:
+  /news/{keywords}:
+    get:
+      operationId: websearch_for_news
+      summary: Get recent news about the keywords, usually about the stock.
+      parameters:
+        - in: path
+          name: keywords
+          schema:
+              type: string
+          required: true
+          description: The name of the keywords, usually the name of the stock.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/websearch_for_news'
+  /financialstatement/{stockcode}/{company_type}/{report_type}/{report_date}:
+    get:
+      operationId: get_financialstatement
+      summary: Get company's financial statement from cninfo, include balance sheets, income statement, cashflow statement.
+      parameters:
+        - in: path
+          name: stockcode
+          schema:
+              type: string
+          required: true
+          description: The stock code of the company, usually 6 character like 600000.
+        - in: path
+          name: company_type
+          schema:
+              type: string
+          required: true
+          description: The type of the company，1 is general company, 2 is bank, 3 is securities company, 4 is insurance company.
+        - in: path
+          name: report_type
+          schema:
+              type: string
+          required: true
+          description: The report type of the data source，only excatly one of the following values is allowed [BalanceSheets, IncomeStatement, CashFlowStatement].
+        - in: path
+          name: report_date
+          schema:
+              type: string
+          required: true
+          description: The report date of the data source，year is yearly report, middle is half year report, one is first quatrer report, three is third quarter report. Note only excatly one of the following values is allowed [year, middle, one, three].
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/get_financialstatement'
+  /stockquotes/{stockcode}/{adjustflag}/{start_date}/{end_date}/{freq}:
+    get:
+      operationId: get_stockquotes
+      summary: Get recent stock quotes about the a share of China, include close,volume,amount of a period.
+      parameters:
+        - in: path
+          name: stockcode
+          schema:
+              type: string
+          required: true
+          description: TThe stock code of the company, usually 6 character like 600000.
+        - in: path
+          name: adjustflag
+          schema:
+              type: string
+          required: true
+          description: Adjustflag represents the adjustment status, only excatly one of the following values is allowed [1, 2, 3]. 1 means post-adjustment, 2 means pre-adjustment, 3 means no adjustment. If not specific, use 2.
+        - in: path
+          name: start_date
+          schema:
+              type: string
+          required: true
+          description: The begining date of quote.
+        - in: path
+          name: end_date
+          schema:
+              type: string
+          required: true
+          description: The end date of quote.
+        - in: path
+          name: freq
+          schema:
+              type: string
+          required: true
+          description: The frequency of the data return, only excatly one of the following values is allowed [d, w, m], means daily weekly monthly. If not specific, use m.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/stockquotes'
+components:
+  schemas: 
+    websearch_for_news:
+      type: array
+      items:
+        type: object
+        properties:
+          title:
+            type: string
+            description: The title of the news.
+          abstract:
+            type: string
+            description: The abstract of the news.
+          source:
+            type: string
+            description: The url of the news.
+          meida_name:
+            type: string
+            description: The source where the news was published.
+          time:
+            type: date
+            description: The time when the news was released.
+    FinancialYearData:
+      type: object
+      properties:
+        index:
+          type: string
+          description: The financial indicator.
+      additionalProperties:
+        type: number
+        description: The value of the financial indicator in a specific year.
+    get_financialstatement:
+      type: object
+      properties:
+        year:
+          type: array
+          description: The financial indicator of yearly report, the value is accumulated from begining of the year.
+          items:
+            $ref: '#/components/schemas/FinancialYearData'
+        middle:
+          type: array
+          description: The financial indicator of middle year report, the value is accumulated from begining of the year.
+          items:
+            $ref: '#/components/schemas/FinancialYearData'
+        one:
+          type: array
+          description: The financial indicator of first quarter report, the value is accumulated from begining of the year.
+          items:
+            $ref: '#/components/schemas/FinancialYearData'
+        three:
+          type: array
+          description: The financial indicator of third quarter report, the value is accumulated from begining of the year.
+          items:
+            $ref: '#/components/schemas/FinancialYearData'
+    stockquotes:
+      type: object
+      properties:
+        adjustflag:
+          type: object
+          description: The adjustment status of the quote.
+          additionalProperties:
+            type: string
+            format: date
+        amount:
+          type: object
+          description: The amount of the stock trade.
+          additionalProperties:
+            type: string
+            format: float
+        close:
+          type: object
+          description: The close price of the stock.
+          additionalProperties:
+            type: string
+            format: float
+        volume:
+          type: object
+          description: The volume of the stock trade.
+          additionalProperties:
+            type: string
+            format: integer
