@@ -27,7 +27,7 @@ quart这个框架有个问题，就是不能在notebook里面直接运行，spyd
 python3 server.py
 ```
 
-### 官网安装
+### 安装
 具体开发以及使用的思路请参考这篇知乎回答（不是我）https://zhuanlan.zhihu.com/p/629207240
 也可以参考OpenAI的官方文档https://platform.openai.com/docs/plugins/examples  
 
