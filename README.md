@@ -34,7 +34,7 @@ python3 server.py
 server.py 是主程序，除了Openai规定的标准端点，有三个核心端点：  
 * GET /news/{keywords} - 检索有关给定关键字的最新新闻，用的是东方财富网的一个爬虫
 * GET /financialstatement/{stockcode}/{company_type}/{report_type}/{report_date} - 检索给定股票的财务报表，用的是巨潮的一个爬虫，支持三张表的主要数据，可以区分一般企业与金融企业
-* GET /{stockquotes}/{stockcode}/{adjustflag}/{start_date}/{end_date/freq} - 用于获取股票的历史行情信息，使用的是baostock库
+* GET /stockquotes/{stockcode}/{adjustflag}/{start_date}/{end_date/freq} - 用于获取股票的历史行情信息，使用的是baostock库
 
 openai.yaml 是Openai的一个规范化说明文件，是对函数、参数、返回信息的说明，是ChatGPT会直接读取的内容，教给它如何去调用server.py中的函数
 其他的没啥大用
