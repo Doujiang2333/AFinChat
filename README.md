@@ -2,9 +2,11 @@
 AFinChat是一款ChatGPT的插件，可以装载在ChatGPT的自定义插件中，用来联网获取A股行情、财务、新闻等信息，便于后续分析  
 整体的思路：权限申请 -> 本地运行该项目 -> 官网安装 -> 顺利使用
 # 权限申请
-首先你必须有ChatGPT的插件开发权限，如果没有的话可以去https://openai.com/waitlist/plugins
+**你有两种方式可以使用AFinChat插件**
+## 直接在应用商店中安装，搜索AFinChat即可，这需要你有ChatGPT Plus
+## 可以下载到本地修改后安装未认证版，这需要你有ChatGPT Plugin的开发者权限，仅开通了ChatGPT Plus是无法使用的（小白用户建议放弃该方法）
+你必须有ChatGPT的插件开发权限，如果没有的话可以去https://openai.com/waitlist/plugins
 申请，在申请界面要选I am a developer and want to build a plugin  
-**提示：并非开通了ChatGPT plus就可以有开发者权限，当前插件使用权限与开发权限是分开的，必须单独申请**
 
 # 运行方法
 
@@ -20,7 +22,6 @@ python3 server.py
 # 官网安装
 具体开发以及使用的思路请参考这篇知乎回答（不是我）https://zhuanlan.zhihu.com/p/629207240
 也可以参考OpenAI的官方文档https://platform.openai.com/docs/plugins/examples  
-**重点提示：如果你是一个完完全全的小白，建议放弃该项目，看个乐即可**
 
 # 使用示例
 **总结最近新闻**  
