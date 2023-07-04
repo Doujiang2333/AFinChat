@@ -53,6 +53,5 @@ openai.yaml 是Openai的一个规范化说明文件，是对函数、参数、�
 ![image](https://github.com/Doujiang2333/AFinChat/assets/125125837/ee8b0e5a-5801-4384-bd6c-cbf668318ae0)
 
 # 未来开发计划
-1. 等待OpenAI官方插件审核通过
-2. 支持港股行情
-3. 支持基金、基金经理分析
+1. 支持港股行情
+2. 支持基金经理定性分析
