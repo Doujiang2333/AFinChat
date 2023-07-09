@@ -4,7 +4,7 @@ info:
   description: A share analysis about news and financial statement.
   version: 'v1'
 servers:
-  - url: http://localhost:5023
+  - url: http://localhost:5000
 paths:
   /news/{keywords}:
     get:
