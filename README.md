@@ -1,7 +1,7 @@
 # 简介 / Introduction
 AFinChat是一款ChatGPT的插件，可以装载在ChatGPT的自定义插件中，用来联网获取A股行情、财务、新闻等信息，便于后续分析。  
 AFinChat is a plugin for ChatGPT. It can be loaded into the custom plugins of ChatGPT to fetch information about A-share market, finance, news, etc. online, which is convenient for subsequent analysis.  
-**Discord Channel: https://discord.gg/6YpVnqRP **  
+**Discord Channel: https://discord.gg/6YpVnqRP**  
 **如有功能需求或bug，请提起Issue**  
 **If there are any feature requests or bugs, please raise an Issue.**  
 
